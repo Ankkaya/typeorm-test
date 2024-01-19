@@ -1,8 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm'
+import { IdCard } from './IdCard'
 
 @Entity()
 export class User {
-
     @PrimaryGeneratedColumn()
     id: number
 
@@ -15,4 +15,7 @@ export class User {
     @Column()
     age: number
 
+    // 没有外键一方查询维护外键一方
+    @OneToOne(() => IdCard, (idCard) => idCard.user)
+    idCard: IdCard
 }
